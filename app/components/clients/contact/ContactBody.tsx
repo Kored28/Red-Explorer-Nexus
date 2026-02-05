@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react"
 import ClientInput from "../inputs/ClientInput"
 import ClientButton from "../ClientButton";
+import toast from "react-hot-toast";
 
 const ContactBody = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +15,27 @@ const ContactBody = () => {
     const [message, setMessage] = useState<string>("")
 
     const onSubmit = useCallback(() => {
-
-    }, []);
+        try {
+            setIsLoading(true);
+            toast.success("Subscribed");
+            setfirstName("");
+            setLastName("");
+            setEmail("");
+            setSubject("");
+            setMessage("")
+        } catch (error) {
+            toast.error("Oops. Try again")
+        } finally{
+            setIsLoading(false);
+        }
+    }, [
+        setIsLoading,
+        setfirstName,
+        setLastName,
+        setEmail,
+        setSubject,
+        setMessage,
+    ]);
 
 
   return (

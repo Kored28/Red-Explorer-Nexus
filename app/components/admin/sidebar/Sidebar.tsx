@@ -9,7 +9,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ currentUser }) => {
   return (
-    <div className='fixed left-0 top-0 h-screen w-[15%] lg:w-[20%] bg-[#0a143d]'>
+    <div className='fixed left-0 top-0 h-screen w-[15%] lg:w-[20%] bg-[#0a143d] z-20'>
         <div className='px-5 py-4 flex flex-col gap-15'>
           <AdminLogo />
 

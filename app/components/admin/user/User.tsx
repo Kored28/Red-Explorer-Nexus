@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import useUser from "@/hooks/useUser";
-import { ClipLoader } from "react-spinners";
 import { useParams, useRouter } from "next/navigation";
 
 import Button from "../Button";
 import Placeholder from "@/public/images/user.png"
 import AdminHeader from "../AdminHeader";
+import { Spinner } from "@/components/ui/spinner";
 
 
 const User = () => {
@@ -39,18 +39,19 @@ const User = () => {
                     <div
                         className="flex flex-row  "
                     >
-                        <ClipLoader color="blue" size={80}/>
+                        <Spinner color="blue" className="size-14"/>
                     </div>
                 ): (
                     <div className="flex flex-col gap-4">
                         {fetchedUser.profileImage ? (
-                            <Image
+                           <div className="relative w-37.5 h-37.5 ">
+                             <Image
                                 src={fetchedUser.profileImage}
                                 alt="Profile Image"
-                                width={150}
-                                height={150}
-                                className="rounded-full"
+                                fill
+                                className="rounded-full object-cover"
                             />
+                           </div>
                         ):(
                             <Image
                                 src={Placeholder}

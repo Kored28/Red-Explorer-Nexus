@@ -15,35 +15,41 @@ const HeroSection = () => {
         router.push("/about-us")
     };
 
+    const moveDown = () =>{
+        router.push("/#postSection")
+    }
+
   return (
     <div>
         <div 
-        className="relative bg-home-hero h-110.5 sm:h-146.75 bg-center bg-cover z-0">
+        className="relative bg-home-hero h-[90vh] sm:h-146.75 bg-center bg-cover z-0">
             <div className="absolute inset-0 bg-black/30"></div>
 
             <div className="relative flex flex-col items-center gap-5 sm:gap-7.5 pt-25 sm:pt-31 z-20">
-                <motion.div className="flex flex-col items-center gap-4">
-                    <div className="flex gap-2">
+                <motion.div className="flex flex-col items-center gap-4 px-4">
+                    <div className="flex flex-wrap justify-center gap-2">
                         <h3 className="text-white font-lato font-bold text-2xl sm:text-3xl">
                             THE COUNTER:
                         </h3>
 
-                        <div className="flex gap-2 font-lato font-bold text-2xl sm:text-3xl">
-                            <span className="text-[#FFA500]">
-                                70
-                            </span>
-                            <h3 className="text-white">
-                                Countries 
-                            </h3>
-                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            <div className="flex gap-2 font-lato font-bold text-2xl sm:text-3xl">
+                                <span className="text-[#FFA500]">
+                                    70
+                                </span>
+                                <h3 className="text-white">
+                                    Countries 
+                                </h3>
+                            </div>
 
-                        <div className="flex gap-2 font-lato font-bold text-2xl sm:text-3xl">
-                            <span className="text-[#FFA500]">
-                                1036
-                            </span>
-                            <h3 className="text-white">
-                                Cities 
-                            </h3>
+                            <div className="flex gap-2 font-lato font-bold text-2xl sm:text-3xl">
+                                <span className="text-[#FFA500]">
+                                    1036
+                                </span>
+                                <h3 className="text-white">
+                                    Cities 
+                                </h3>
+                            </div>
                         </div>
                     </div>
 
@@ -67,7 +73,10 @@ const HeroSection = () => {
                        Scroll Down to Continue 
                     </p>
 
-                    <div className="bg-white w-8 h-8 flex items-center justify-center rounded-full">
+                    <div 
+                        onClick={moveDown}
+                        className="bg-white w-8 h-8 flex items-center justify-center rounded-full cursor-pointer"
+                    >
                         <FaAngleDown 
                             size={17}
                             color="#0336FF"

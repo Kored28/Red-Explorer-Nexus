@@ -4,6 +4,7 @@ import Image from 'next/image'
 import ClientInput from '../inputs/ClientInput';
 import { useCallback, useState } from 'react';
 import ClientButton from '../ClientButton';
+import toast from 'react-hot-toast';
 
 interface CTAProps{
     images: {
@@ -21,8 +22,16 @@ const CTA: React.FC<CTAProps> = ({
     const [email, setEmail] = useState<string>("");
 
     const onSubmit = useCallback(() => {
-    
-    }, []);
+        try {
+            setIsLoading(true)
+            toast.success("Subscribed")
+            setEmail("")
+        } catch (error) {
+            toast.error("Oops")
+        } finally{
+            setIsLoading(false)
+        }
+    }, [setEmail, setIsLoading]);
   return (
     <div >
         {/* Slider */}

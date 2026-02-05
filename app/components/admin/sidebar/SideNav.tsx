@@ -56,12 +56,12 @@ const SideNav: React.FC<SideNavProps> = ({ currentUser }) => {
             label: 'Countries',
             active: pathname === '/admin/countries'
         },
-        {
-            href: '/admin/categories',
-            Icon: FaListUl,
-            label: 'Categories',
-            active: pathname === '/admin/categories'
-        },
+        // {
+        //     href: '/admin/categories',
+        //     Icon: FaListUl,
+        //     label: 'Categories',
+        //     active: pathname === '/admin/categories'
+        // },
         {
             href: `/admin/users/${currentUser?.id}`,
             Icon: FaUser,

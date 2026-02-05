@@ -1,12 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import TravelImg from "@/public/images/Travel-ft-img.jpg"
 import { FaLocationDot } from "react-icons/fa6";
 import { FaComments } from "react-icons/fa";
+import useDestinations from "@/hooks/useDestinations";
+import { Spinner } from "@/components/ui/spinner";
 
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  featuredImage: string;
+  excerpt?: string;
+  country: {
+    id: string;
+    name: string
+  }
+  createdAt: string;
+}
 
 const DestinationBody = () => {
+    const { data: FetchedDestinations, isLoading } = useDestinations();
+
+    const formatDate = (date: string) => {
+        return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        });
+    };
+
+
     return (
         <div
             className={`
@@ -49,7 +74,7 @@ const DestinationBody = () => {
 
             {/* Continent Filter */}
             <div 
-                className='grid grid-cols-5 max-w-360 mt-8.25 px-5 lg:px-0'
+                className='grid grid-cols-1 md:grid-cols-5 :max-w-360 mt-8.25 px-5 lg:px-0'
             >
                 <div 
                     className={`
@@ -126,93 +151,100 @@ const DestinationBody = () => {
 
             {/* Destination Posts */}
             <div
-                className="grid grid-cols-3 max-w-360 gap-21.75 px-5 lg:px-17.75"
+                className="grid grid-cols-1 md:grid-cols-3 max-w-360 gap-21.75 px-5 lg:px-17.75"
             >
-                <div 
-                    className={`flex flex-col`}
-                >
-                    <div className="w-95.75">
-                        <Image
-                        src={TravelImg}
-                        alt="Featured Image"
-                        className=" h-90 object-cover"
-                        />
-                    </div>
-
-                    {/* Body */}
-            
-                    <div
-                        className={`
-                            bg-white flex flex-col gap-2 w-88 pt-11.25 pb-6.25 -mt-20
-                            shadow-inner-[0_2px_6px_0_rgba(0,0,0,0.197)] shadow-[0_6px_14px_0_rgba(0,0,0,0.283)]    
-                        `}
-                    >
-                        <p 
-                        className={`
-                            font-lato font-bold text-lg text-[#FFA500] leading-[33.81px]
-                            border-l-6 border-[#FFA500] px-4.5 mb-2
-                        `}
-                        >
-                            July, 15, 2021 - Tips and Tricks 
-                        </p>
-            
-                        <div className={`flex flex-col px-6 pb-6`}>
-                            <h2
-                                className={`
-                                font-lato font-semibold text-2xl
-                                `}
-                            >
-                                Finding Love & Home
-                                In Tbilisi, Georgia
-                            </h2>
-                        </div>
-            
+                {!FetchedDestinations || isLoading ? (
+                    <Spinner color="blue" className="size-14"/>
+                ) : (
+                    FetchedDestinations.map((post: Post) => (
                         <div 
-                        className={`
-                            flex flex-row justify-between mx-6 pt-8 border-t border-t-[#C4C4C4]
-                        `}
+                        key={post.id}
+                            className={`flex flex-col`}
                         >
+                            <div className="relative w-95.75 h-90 z-0">
+                                <Image
+                                src={post.featuredImage}
+                                alt="Featured Image"
+                                fill
+                                className="object-cover"
+                                />
+                            </div>
+
+                            {/* Body */}
+                    
                             <div
                                 className={`
-                                    flex flex-row gap-3 items-center
+                                    bg-white flex flex-col gap-2 w-88 pt-11.25 pb-6.25 -mt-20 z-10
+                                    shadow-inner-[0_2px_6px_0_rgba(0,0,0,0.197)] shadow-[0_6px_14px_0_rgba(0,0,0,0.283)]    
                                 `}
                             >
-                                <FaLocationDot
-                                size={20}
-                                color="#FFA500"
-                                />
-                                <p
+                                <p 
                                 className={`
-                                    font-lato font-medium text-lg 
+                                    font-lato font-bold text-lg text-[#FFA500] leading-[33.81px]
+                                    border-l-6 border-[#FFA500] px-4.5 mb-2
                                 `}
                                 >
-                                    Penang
+                                    {formatDate(post.createdAt)}- Destinations 
                                 </p>
-                            </div>
-                            
-                            <div
+                    
+                                <div className={`flex flex-col px-6 pb-6`}>
+                                    <h2
+                                        className={`
+                                        font-lato font-semibold text-2xl
+                                        `}
+                                    >
+                                        {post.title.length > 42 ? post.title.slice(0, 42) + "..." : post.title}
+                                    </h2>
+                                </div>
+                    
+                                <div 
                                 className={`
-                                    flex flex-row gap-3 items-center
-                                `}
-                            >
-                                <FaComments
-                                size={20}
-                                color="#FFA500"
-                                />
-                                <p
-                                className={`
-                                    font-lato font-medium text-lg 
+                                    flex flex-row justify-between mx-6 pt-8 border-t border-t-[#C4C4C4]
                                 `}
                                 >
-                                Comment (52)
-                                </p>
+                                    <div
+                                        className={`
+                                            flex flex-row gap-3 items-center
+                                        `}
+                                    >
+                                        <FaLocationDot
+                                        size={20}
+                                        color="#FFA500"
+                                        />
+                                        <p
+                                        className={`
+                                            font-lato font-medium text-lg 
+                                        `}
+                                        >
+                                            {post.country.name}
+                                        </p>
+                                    </div>
+                                    
+                                    <div
+                                        className={`
+                                            flex flex-row gap-3 items-center
+                                        `}
+                                    >
+                                        <FaComments
+                                        size={20}
+                                        color="#FFA500"
+                                        />
+                                        <p
+                                        className={`
+                                            font-lato font-medium text-lg 
+                                        `}
+                                        >
+                                        Comment (52)
+                                        </p>
+                                    </div>
+                    
+                                </div>
+                    
                             </div>
-            
+                    
                         </div>
-            
-                    </div>
-            
-                </div>
+                    )
+                ))}
             </div>
   
         </div>

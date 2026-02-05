@@ -5,7 +5,8 @@ import PostRight from "./post section/PostRight"
 const HomePostSection = () => {
   return (
     <div 
-      className={`flex flex-row gap-2 lg:gap-19 sm:gap-10
+      id="postSection"
+      className={`flex flex-col-reverse md:flex-row gap-20 md:gap-19
         py-14 sm:py-25 px-5 lg:px-17 justify-center
       `}
     >

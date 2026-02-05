@@ -1,11 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import TravelImg from "@/public/images/Travel-ft-img.jpg"
-import { FaLocationDot } from "react-icons/fa6";
 import { FaComments, FaStar } from "react-icons/fa";
 
+import TravelImg from "@/public/images/Travel-ft-img.jpg"
+import { FaLocationDot } from "react-icons/fa6";
+import useTravelTips from "@/hooks/useTravelTips";
+import { Spinner } from "@/components/ui/spinner";
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  featuredImage: string;
+  excerpt?: string;
+  country: {
+    id: string;
+    name: string
+  }
+  createdAt: string;
+}
+
 const TravelBody = () => {
+    const { data: fetchedTravelTips, isLoading } = useTravelTips();
+
+    const formatDate = (date: string) => {
+        return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        });
+    };
+
     return (
         <div
             className={`
@@ -27,8 +53,8 @@ const TravelBody = () => {
                             font-roboto font-bold text-[64px] text-black w-full sm:w-[45%]                           
                         `}
                     >
-                        Maintaining your 
-                        <span className='text-[#FFA500] underline'> privacy</span> during travels. 
+                        Maintaining your&nbsp;
+                        <span className='text-[#FFA500] underline'>privacy</span> during travels. 
                     </h2>
     
                     <p
@@ -55,110 +81,119 @@ const TravelBody = () => {
 
             {/* Destination Posts */}
             <div
-                className="grid grid-cols-3 max-w-360 gap-21.75 px-5 lg:px-17.75"
+                className="grid grid-cols-1 md:grid-cols-3 max-w-360 gap-21.75 px-5 lg:px-17.75"
             >
-                <div 
-                    className={`flex flex-col w-full sm:w-93.5 rounded-[30px]
-                        shadow-inner-[0_2px_6px_0_rgba(0,0,0,0.197)] shadow-[0_6px_14px_0_rgba(0,0,0,0.283)]  
-                    `}
-                >
-                    <Image
-                        src={TravelImg}
-                        alt="Featured Image"
-                        className=" h-55.25 object-cover rounded-t-[30px]"
-                    />
-
-                    {/* Body */} 
-                    <div
-                        className={`
-                            bg-white flex flex-col gap-2 pt-5 pb-6.75 rounded-b-[30px]
-                              
-                        `}
-                    >
-                        <p 
-                        className={`
-                            font-lato font-bold text-lg text-[#6E7191] leading-[33.81px]
-                            px-4
-                        `}
-                        >
-                            July, 15, 2021 - Tips and Tricks 
-                        </p>
-            
-                        <div className={`flex flex-col px-4 pt-2.25 pb-6.5 bg-[#0336FF]`}>
-                            <h2
-                                className={`
-                                    font-lato font-black text-[34px] text-white
-                                `}
-                            >
-                                Going to the Extreme
-                                -The Northern Pole
-                            </h2>
-                        </div>
-            
+                {!fetchedTravelTips || isLoading ? (
+                    <Spinner color="blue" className="size-14" />
+                ) : (
+                    fetchedTravelTips.map((post: Post) => (
                         <div 
-                        className={`
-                            flex flex-row justify-between pt-5 pr-8
-                        `}
+                        key={post.id}
+                            className={`flex flex-col w-full sm:w-93.5 rounded-[30px]
+                                shadow-inner-[0_2px_6px_0_rgba(0,0,0,0.197)] shadow-[0_6px_14px_0_rgba(0,0,0,0.283)]  
+                            `}
                         >
-                            <div
-                                className={`
-                                    flex flex-row gap-0.5 items-center
-                                `}
-                            >
-                                <FaLocationDot
-                                    size={37}
-                                    color="#14142B"
+                            <div className="relative h-55.25">
+                                <Image
+                                    src={post.featuredImage}
+                                    alt="Featured Image"
+                                    fill
+                                    className="object-cover rounded-t-[30px]"
                                 />
-                                <p
-                                className={`
-                                    font-lato font-extrabold text-sm text[#14142B]
-                                `}
-                                >
-                                    North Pole
-                                </p>
-                            </div>
-                            
-                            <div
-                                className={`
-                                    flex flex-row gap-0.5 items-center
-                                `}
-                            >
-                                <FaComments
-                                    size={37}
-                                    color="#14142B"
-                                />
-                                <p
-                                className={`
-                                    font-lato font-extrabold text-sm text[#14142B]
-                                `}
-                                >
-                                Comment (52)
-                                </p>
                             </div>
 
+                            {/* Body */} 
                             <div
                                 className={`
-                                    flex flex-row gap-0.5 items-center
+                                    bg-white flex flex-col gap-2 pt-5 pb-6.75 rounded-b-[30px]
+                                    
                                 `}
                             >
-                                <FaStar 
-                                    size={37}
-                                    color="#14142B"
-                                />
-                                <p
+                                <p 
                                 className={`
-                                    font-lato font-extrabold text-sm text[#14142B]
+                                    font-lato font-bold text-lg text-[#6E7191] leading-[33.81px]
+                                    px-4
                                 `}
                                 >
-                                    4.8 of 5
+                                    {formatDate(post.createdAt)} - Tips and Tricks 
                                 </p>
+                    
+                                <div className={`flex flex-col px-4 pt-2.25 pb-6.5 bg-[#0336FF]`}>
+                                    <h2
+                                        className={`
+                                            font-lato font-black text-[34px] text-white
+                                        `}
+                                    >
+                                        {post.title.length > 25 ? post.title.slice(0, 25) + "..." : post.title}
+                                    </h2>
+                                </div>
+                    
+                                <div 
+                                className={`
+                                    flex flex-row justify-between pt-5 pr-8
+                                `}
+                                >
+                                    <div
+                                        className={`
+                                            flex flex-row gap-0.5 items-center
+                                        `}
+                                    >
+                                        <FaLocationDot
+                                            size={37}
+                                            color="#14142B"
+                                        />
+                                        <p
+                                        className={`
+                                            font-lato font-semibold text-sm text[#14142B]
+                                        `}
+                                        >
+                                            {post.country.name}
+                                        </p>
+                                    </div>
+                                    
+                                    <div
+                                        className={`
+                                            flex flex-row gap-0.5 items-center
+                                        `}
+                                    >
+                                        <FaComments
+                                            size={37}
+                                            color="#14142B"
+                                        />
+                                        <p
+                                        className={`
+                                            font-lato font-semibold text-sm text[#14142B]
+                                        `}
+                                        >
+                                        Comment (52)
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        className={`
+                                            flex flex-row gap-0.5 items-center
+                                        `}
+                                    >
+                                        <FaStar 
+                                            size={37}
+                                            color="#14142B"
+                                        />
+                                        <p
+                                        className={`
+                                            font-lato font-semibold text-sm text[#14142B]
+                                        `}
+                                        >
+                                            4.8 of 5
+                                        </p>
+                                    </div>
+                    
+                                </div>
+                    
                             </div>
-            
                         </div>
-            
-                    </div>
-            
-                </div>
+                    ))
+                )}
+
             </div>
 
         </div>

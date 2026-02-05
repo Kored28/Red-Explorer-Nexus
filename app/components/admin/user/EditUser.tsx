@@ -11,6 +11,7 @@ import Input from "../inputs/Input";
 import AdminHeader from "../AdminHeader";
 import Button from "../Button";
 import ImageUpload from "../inputs/ImageUpload";
+import Textarea from "../inputs/Textarea";
 
 interface EditUserProps {
     currentUser?: User | null
@@ -93,11 +94,10 @@ const EditUser: React.FC<EditUserProps> = ({ currentUser }) => {
                 type="text"
                 disabled={isLoading}
             />
-            <Input
+            <Textarea
                 placeholder="Bio"
                 onChange={(e) => setBio(e.target.value)}
                 value={bio ? bio : ""}
-                type="text"
                 disabled={isLoading}
             />
         </div>
@@ -107,6 +107,7 @@ const EditUser: React.FC<EditUserProps> = ({ currentUser }) => {
             label="Save"
             onClick={onSubmit}
             disabled={isLoading}
+            disabledText="Saving"
             />
         </div>
     </div>

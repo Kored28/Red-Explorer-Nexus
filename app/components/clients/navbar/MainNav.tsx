@@ -6,6 +6,7 @@ import { FaBars } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 
+
 const MainNav = () => {
     const [toggle, setToggle] = useState(false);
 
@@ -51,7 +52,8 @@ const MainNav = () => {
                         href={route.href}
                         className={
                            route.active ? "bg-[#0336FF] font-roboto font-semibold rounded-lg px-[40.5px] py-[6.8px] text-white" 
-                           : "text-base text-[#FFA500] font-roboto font-semibold"
+                           : 
+                           "text-base text-[#FFA500] font-roboto rounded-lg font-semibold hover:bg-[#0336FF] hover:px-[40.5px] hover:py-[6.8px] hover:text-white"
                         }
                     >
                         {route.label}
@@ -63,7 +65,7 @@ const MainNav = () => {
             <FaBars 
             size={20}
             onClick={handleClick}
-            className="text-white"
+            className="text-[#0336FF]"
             />
 
             {toggle && (

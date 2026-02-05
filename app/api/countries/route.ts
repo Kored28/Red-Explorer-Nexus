@@ -25,7 +25,6 @@ export const POST = async(req: Request) => {
 
         return NextResponse.json(country, {status: 201});
     } catch (error) {
-        console.log(error);
         NextResponse.json({ message: "Something went wrong" }, {status: 500})
     }
 }
@@ -35,9 +34,8 @@ export const GET = async() => {
     try {
         const country = await prisma.country.findMany({})
 
-        return NextResponse.json(country, {status: 201});
+        return NextResponse.json(country, {status: 200});
     } catch (error) {
-        console.log(error);
         NextResponse.json({ message: "Something went wrong" }, {status: 500})
     }
 }

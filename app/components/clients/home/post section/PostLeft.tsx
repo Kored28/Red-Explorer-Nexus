@@ -8,11 +8,31 @@ import Apple from "@/public/images/Apple mackbook.png";
 import Iphone from "@/public/images/Iphone x case.png";
 import Band from "@/public/images/Master watch.png";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import useRelatedDestinations from "@/hooks/useRelatedDestinations";
+import { Skeleton } from "@/components/ui/skeleton";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+
+interface Post {
+  id: string;
+  title: string;
+  featuredImage: string;
+  createdAt: string;
+}
 
 
 const PostLeft = () => {
+  const { main, related, isLoading } = useRelatedDestinations();
+
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
   return (
-    <div className="flex flex-col gap-10.5 w-[30%] sm:w-109.5">
+    <div className="flex flex-col gap-10.5 w-full md:w-109.5">
       {/* About Me */}
       <div
         className={`bg-white px-8 flex flex-col gap-2 pb-4.5
@@ -44,7 +64,7 @@ const PostLeft = () => {
 
       {/* Categories */}
       <div
-        className={`bg-white px-9 flex flex-col gap-16 pb-4.5 pt-4
+        className={`bg-white px-9 flex flex-col gap-16 pb-18 pt-4 
           shadow-inner-[0_2px_6px_0_rgba(0,0,0,0.197)] shadow-[0_6px_14px_0_rgba(0,0,0,0.283)]
         `}
       >
@@ -52,13 +72,61 @@ const PostLeft = () => {
           Categories
         </h2>
         
-        <div className="flex flex-row justify-between items-center">
-          <h4 className="font-lato font-medium text-2xl text-center leading-10">
-            Europe
-          </h4>
-          <p className="font-lato font-medium text-2xl text-center leading-10">
-            (11)
-          </p>
+        <div className="flex flex-col gap-4.25">
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Europe
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Mountains
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Traveling Video
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Beauty of Seas
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Cuisine
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between items-center">
+            <h4 className="font-lato font-medium text-2xl text-center leading-10">
+              Guides for traveler
+            </h4>
+            <p className="font-lato font-medium text-2xl text-center leading-10">
+              (11)
+            </p>
+          </div>
+
         </div>
       </div>
 
@@ -74,6 +142,67 @@ const PostLeft = () => {
           </h2>
         </div>
 
+        {!main || isLoading ? (
+          <Skeleton className="h-91 w-full" />
+        ) : (
+          <div
+            style={{
+              backgroundImage: `url(${main.featuredImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            }}
+            className={`
+              relative pt-9.5 pb-12 z-0
+            `}
+          >
+            <div className="absolute inset-0 bg-[#110EC2]/30"></div>
+
+            <div className="relative z-10 flex flex-col gap-20.75">
+              <p 
+              className={`
+                font-lato font-medium text-2xl leading-[33.81px]
+                text-white px-9
+              `}
+              >
+                {formatDate(main.createdAt)} - Destination
+              </p>
+
+              <div className="flex flex-col gap-9 px-9">
+                <h2
+                  className={`
+                    font-lato font-semibold text-[31.64px] leading-[46.98px]
+                    text-white
+                  `}
+                >
+                  {main.title}
+                </h2>
+
+                <div className="flex flex-row gap-5">
+                  <div 
+                    className="bg-white w-10.25 h-12.5 flex flex-col items-center justify-center hover:shadow-md"
+                  >
+                    <FaAngleLeft 
+                      color="#0336FF"
+                      size={14}
+                    />
+                  </div>
+                  <div 
+                    className="bg-white w-10.25 h-12.5 flex flex-col items-center justify-center hover:shadow-md"
+                  >
+                    <FaAngleRight 
+                      color="#0336FF"
+                      size={14}
+                    />
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        )}
+
       </div>
 
       {/* Recent Post */}
@@ -86,6 +215,39 @@ const PostLeft = () => {
           <h2 className="font-lato font-bold text-3xl text-center leading-[46.98px]">
             Recent Post
           </h2>
+        </div>
+
+        <div className="flex flex-col gap-7">
+          {!related || isLoading ? (
+            <Skeleton className="h-91 w-full" />
+          ): (
+            related.map((post: Post) => (
+              <div 
+                key={post.id}
+                className="flex flex-row items-center gap-3.5"
+              >
+                <div className="relative w-25 h-20">
+                  <Image
+                    src={post.featuredImage}
+                    alt="Featured Image"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col w-[80%]">
+                  <p className="font-lato font-medium text-lg leading-[33.81px] text-[#0A0909]">
+                    {formatDate(main.createdAt)} - Destination
+                  </p>
+
+                  <h4 className="font-lato font-semibold text-2xl leading-7.5">
+                    {post.title}
+                  </h4>
+                </div>
+
+              </div>
+            ))
+          )}
         </div>
 
       </div>
@@ -204,7 +366,7 @@ const PostLeft = () => {
           `}
         >
           <h2 className="font-lato font-bold text-3xl text-center leading-[46.98px]">
-            Product That I Have
+            Get In Touch
           </h2>
         </div>
 

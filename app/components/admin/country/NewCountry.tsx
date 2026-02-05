@@ -2,9 +2,8 @@
 
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { User } from "@/app/generated/prisma/client";
 import axios from "axios";
 import Input from "../inputs/Input";
 import AdminHeader from "../AdminHeader";
@@ -53,7 +52,7 @@ const NewCountry = () => {
 
   return (
     <div className="flex flex-col gap-10">
-        <AdminHeader title="Edit Profile"/>
+        <AdminHeader title="New Country"/>
 
         <div className="flex flex-col gap-7 w-71 lg:w-[40%]">
 

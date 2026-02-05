@@ -26,6 +26,7 @@ const ClientButton: React.FC<ClientButtonProps> = ({
             ${small ? "py-1.75 px-9" : "py-5.5 px-11.5"}
             ${subscribe ? "font-normal" : "font-medium"}
             ${subscribe ? "text-[20px]" : "text-[16px]"}
+            hover:shadow-xl cursor-pointer
         `}
     >
         {disabled ? disabledText : label}

@@ -1,19 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 
 import Button from "../Button";
-import Placeholder from "@/public/images/user.png"
 import AdminHeader from "../AdminHeader";
-import useCountry from "@/hooks/useCountry";
+import useCountries from "@/hooks/useCountries";
+import { Spinner } from "@/components/ui/spinner";
+
+interface Country {
+    id: string
+    name: string;
+    continent: string
+}
 
 
 const CountryAdmin = () => {
     const router = useRouter();
         
-    const { data: fetchedUser, isLoading } = useCountry();
+    const { data: fetchedCountry, isLoading } = useCountries();
 
     const handleClick = () => {
         router.push(`/admin/countries/new`)
@@ -35,58 +40,32 @@ const CountryAdmin = () => {
                 </div>
             </div>
             <div className="w-full">
-                {isLoading || !fetchedUser  ? (
-                    <div
-                        className="flex flex-row  "
-                    >
-                        <ClipLoader color="blue" size={80}/>
+                {isLoading || !fetchedCountry  ? (
+                    <div>
+                        <Spinner color="blue" className="size-14"/>
                     </div>
                 ): (
-                    <div className="flex flex-col gap-4">
-                        {fetchedUser.profileImage ? (
-                            <Image
-                                src={fetchedUser.profileImage}
-                                alt="Profile Image"
-                                width={150}
-                                height={150}
-                                className="rounded-full"
-                            />
-                        ):(
-                            <Image
-                                src={Placeholder}
-                                alt="Profile Image"
-                                width={100}
-                                height={100}
-                                className="rounded-full"
-                            />
-                        )}
-
-                        <div className="flex flex-row gap-2 items-center">
-                            <p className="text-lg font-bold">
-                                Name:
-                            </p>
-                            <h2 className="text-lg font-medium">
-                                {fetchedUser.name}
-                            </h2>
-                        </div>
-
-                        <div className="flex flex-row gap-2 items-center">
-                            <p className="text-lg font-bold">
-                                Username:
-                            </p>
-                            <h2 className="text-lg font-medium">
-                                {fetchedUser.username}
-                            </h2>
-                        </div>
-                        
-                        <div className="flex flex-row gap-2 items-center">
-                            <p className="text-lg font-bold">
-                                Bio:
-                            </p>
-                            <p className="text-lg font-medium w-[50%]">
-                                {fetchedUser.bio ? fetchedUser.bio : "Empty"}
-                            </p>
-                        </div>
+                    <div className="flex flex-col gap-7">
+                        {fetchedCountry.map((country: Country) => (
+                            <div 
+                                key={country.id}
+                                className={`
+                                    grid grid-cols-2 justify-between bg-amber-50 shadow-sm px-5
+                                    py-6
+                                `}
+                            >
+                                <h2 className="text-lg font-semibold text-black">
+                                    {country.name}
+                                </h2>
+                                <h2 className="text-base font-medium text-black">
+                                    {country.continent
+                                    .replace(/_/g, " ")
+                                    .toLowerCase()
+                                    .replace(/\b\w/g, (char) => char.toUpperCase())
+                                    }
+                                </h2>
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>
