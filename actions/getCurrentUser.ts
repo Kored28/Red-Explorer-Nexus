@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth";
 
 import { authOptions } from "@/libs/authOptions";
 import prisma from "@/libs/prismadb";
-import toast from "react-hot-toast";
 
 export const getSession = async() => {
     return await getServerSession(authOptions)
@@ -13,7 +12,7 @@ const getCurrentUser = async() => {
         const session = await getSession();
 
         if(!session?.user?.email){
-            return toast.error("User Session has expired");
+            return null;
         }
 
         const currentUser  = await prisma.user.findUnique({
@@ -23,12 +22,12 @@ const getCurrentUser = async() => {
         });
 
         if(!currentUser){
-            return toast.error("unauthorized");
+            return null;
         }
 
         return currentUser;
     } catch (error) {
-        return toast.error("Something went wrong please try again")
+        return null;
     }
 } 
 
