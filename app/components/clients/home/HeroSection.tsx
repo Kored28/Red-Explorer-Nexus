@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { FaAngleDown, FaLocationDot } from "react-icons/fa6";
+import { FaAngleDown } from "react-icons/fa6";
 
 import ClientButton from "../ClientButton";
 import Location from "@/public/location.svg"

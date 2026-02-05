@@ -26,7 +26,7 @@ const CTA: React.FC<CTAProps> = ({
             setIsLoading(true)
             toast.success("Subscribed")
             setEmail("")
-        } catch (error) {
+        } catch  {
             toast.error("Oops")
         } finally{
             setIsLoading(false)

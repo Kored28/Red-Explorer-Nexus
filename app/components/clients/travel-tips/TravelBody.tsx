@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { FaComments, FaStar } from "react-icons/fa";
 
-import TravelImg from "@/public/images/Travel-ft-img.jpg"
 import { FaLocationDot } from "react-icons/fa6";
 import useTravelTips from "@/hooks/useTravelTips";
 import { Spinner } from "@/components/ui/spinner";

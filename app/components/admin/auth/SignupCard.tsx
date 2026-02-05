@@ -1,8 +1,7 @@
 "use client";
 
 import axios from 'axios';
-import { FcGoogle } from 'react-icons/fc';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import AuthCard from './AuthCard';
@@ -34,7 +33,7 @@ const SignupCard = () => {
         toast.success("Registered successfully");
         router.push('/login');
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Something went wrong")
       })
       .finally(() => {

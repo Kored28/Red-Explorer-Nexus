@@ -20,7 +20,7 @@ export const GET = async () => {
             main,
             related,
         }, {status: 200});
-    } catch (error) {
+    } catch {
         return NextResponse.json({Message:"Error fetching destinations"}, { status: 500 });
     }
 }

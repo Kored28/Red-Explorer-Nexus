@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { MdAirplaneTicket, MdDashboard, MdPowerSettingsNew } from 'react-icons/md';
 import Link from 'next/link';
@@ -9,7 +8,6 @@ import { FaMapLocationDot, FaUser } from 'react-icons/fa6';
 import { User } from '@/app/generated/prisma/client';
 import { signOut } from 'next-auth/react';
 import { TiWorld } from 'react-icons/ti';
-import { FaListUl } from 'react-icons/fa';
 
 interface RouteProps  {
   href: string;
@@ -24,11 +22,6 @@ interface SideNavProps {
 
 
 const SideNav: React.FC<SideNavProps> = ({ currentUser }) => {
-    const [toggle, setToggle] = useState(false);
-
-    const handleClick = () => {
-        setToggle((toggle) => !toggle);
-    };
 
     const pathname = usePathname();
     const routes: RouteProps[] = [

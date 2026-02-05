@@ -36,7 +36,7 @@ export const PATCH = async (req: Request) => {
 
         return NextResponse.json(updatedUser, {status: 201})
 
-    } catch (error) {
+    } catch {
         NextResponse.json({message: "Failed to edit Profile"}, { status: 400 })
     }
 }

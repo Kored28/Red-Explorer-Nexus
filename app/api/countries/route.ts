@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 
 import prisma from "@/libs/prismadb";
+import { Continent } from "@/app/generated/prisma/enums";
 
 interface PostRequestProps {
     name: string;
-    continent: any;
+    continent: Continent;
 }
 
 export const POST = async(req: Request) => {
@@ -24,7 +25,7 @@ export const POST = async(req: Request) => {
         });
 
         return NextResponse.json(country, {status: 201});
-    } catch (error) {
+    } catch {
         NextResponse.json({ message: "Something went wrong" }, {status: 500})
     }
 }
@@ -35,7 +36,7 @@ export const GET = async() => {
         const country = await prisma.country.findMany({})
 
         return NextResponse.json(country, {status: 200});
-    } catch (error) {
+    } catch {
         NextResponse.json({ message: "Something went wrong" }, {status: 500})
     }
 }

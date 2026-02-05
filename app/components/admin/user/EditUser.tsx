@@ -61,12 +61,12 @@ const EditUser: React.FC<EditUserProps> = ({ currentUser }) => {
             toast.success('Updated');
 
             router.back()
-        } catch (error) {
+        } catch  {
             toast.error("Something went wrong")
         } finally {
             setIsLoading(false);
         }
-    }, [bio, currentUser.id, name, username, profileImage, mutateFetchedUser]);
+    }, [bio, name, username, profileImage, mutateFetchedUser, router]);
 
   return (
     <div className="flex flex-col gap-10">

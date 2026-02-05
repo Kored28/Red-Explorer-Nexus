@@ -1,11 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaComments } from "react-icons/fa";
-import useDestinations from "@/hooks/useDestinations";
+
 import { Skeleton } from "@/components/ui/skeleton";
-import useTravelTips from "@/hooks/useTravelTips";
 import useRelatedDestinations from "@/hooks/useRelatedDestinations";
 import useRelatedTravelTips from "@/hooks/useRelatedTravelTips";
 import PostCard from "../../PostCard";

@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import Logo from "@/public/red-logo.svg"
-import { useRouter } from 'next/navigation';
 
 
 

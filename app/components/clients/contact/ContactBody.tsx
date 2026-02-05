@@ -23,7 +23,7 @@ const ContactBody = () => {
             setEmail("");
             setSubject("");
             setMessage("")
-        } catch (error) {
+        } catch  {
             toast.error("Oops. Try again")
         } finally{
             setIsLoading(false);

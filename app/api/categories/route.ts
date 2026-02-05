@@ -39,7 +39,7 @@ export const POST = async(req: Request) => {
         })
 
         return NextResponse.json(category, {status: 201})
-    } catch (error) {
+    } catch {
         NextResponse.json({ message: "Something went wrong" }, {status: 500})
     }
 }

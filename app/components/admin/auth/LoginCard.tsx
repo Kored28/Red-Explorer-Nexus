@@ -1,9 +1,8 @@
 "use client";
 
-import axios from 'axios';
+
 import toast from 'react-hot-toast';
-import { FcGoogle } from 'react-icons/fc';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -43,7 +42,7 @@ const LoginCard = () => {
         if(callback?.error){
             toast.error(callback.error)
         }
-    } catch (error) {
+    } catch  {
         toast.error("Something went wrong")
     } finally{
         setIsLoading(false);

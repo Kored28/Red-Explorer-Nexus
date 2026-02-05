@@ -3,7 +3,6 @@
 import {
   Bar,
   BarChart,
-  CartesianGrid,
   XAxis,
   YAxis,
 } from "recharts";
@@ -14,8 +13,16 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
+interface PostsByDayData {
+  date: string;
+  posts: number;
+}
 
-const PostsByDay = ({ data }: any) => {
+interface PostsByDayProps {
+  data: PostsByDayData[];
+}
+
+const PostsByDay = ({ data }: PostsByDayProps) => {
   return (
     <ChartContainer
       config={{

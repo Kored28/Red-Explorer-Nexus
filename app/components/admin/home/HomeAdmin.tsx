@@ -6,12 +6,25 @@ import useTravelTips from "@/hooks/useTravelTips"
 import PostsByDay from "./PostsByDay"
 import { Skeleton } from "@/components/ui/skeleton"
 
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  featuredImage: string;
+  excerpt?: string;
+  country: {
+    id: string;
+    name: string
+  }
+  createdAt: string;
+}
+
 const HomeAdmin = () => {
   const { data: fetchedDestinations, isLoading } = useDestinations();
   const { data: fetchedTravelTips, isLoading: travelLoading } = useTravelTips();
 
 
-  const groupByDay = (posts: any[]) => {
+  const groupByDay = (posts: Post[]) => {
     const days = {
       Sun: 0,
       Mon: 0,

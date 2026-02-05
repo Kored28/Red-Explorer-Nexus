@@ -38,7 +38,7 @@ export const POST = async(req: Request) => {
 
         return NextResponse.json(destination, { status: 201 })
 
-    } catch (error) {
+    } catch {
         return NextResponse.json({message: "Something went wrong"}, {status: 500})
     }
 }
@@ -56,7 +56,7 @@ export const GET = async () => {
         });
 
         return NextResponse.json(destination, {status: 200})
-    } catch (error) {
+    } catch {
         return NextResponse.json({message: "Something went wrong"}, {status: 500})
     }
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 
 import Button from "../Button";

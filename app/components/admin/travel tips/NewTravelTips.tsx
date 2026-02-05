@@ -47,7 +47,7 @@ const NewTravelTips = () => {
             toast.success('Travel Tips Post Created');
 
             router.back()
-        } catch (error) {
+        } catch  {
             toast.error("Something went wrong")
         } finally {
             setIsLoading(false);

@@ -23,7 +23,7 @@ export const GET = async(
         }
        
         return NextResponse.json(existingUser, { status: 200 })
-    } catch (error) {
+    } catch  {
        return NextResponse.json({message: "Something went wrong"}, { status: 500 })
     }
 }
