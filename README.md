@@ -6,6 +6,8 @@ A modern travel blog web application built with Next.js, TypeScript, Prisma, and
 🔗 **Live Site**: [red-explorer-nexus.vercel.app](https://red-explorer-nexus.vercel.app)  
 🔐 **Admin Panel**: [red-explorer-nexus.vercel.app/admin](https://red-explorer-nexus.vercel.app/admin)
 
+**PS:** The site may take a little time to load due to image sizes. If you’re uploading images, please make sure they’re optimized and under **1MB**.
+
 ## 📸 Screenshots
 
 ![Red Explorer Nexus Homepage](./public/Screenshot-home.png)
