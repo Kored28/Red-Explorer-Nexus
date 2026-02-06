@@ -5,7 +5,7 @@ import { MdAirplaneTicket, MdDashboard, MdPowerSettingsNew } from 'react-icons/m
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 import { FaMapLocationDot, FaUser } from 'react-icons/fa6';
-import { User } from '@/app/generated/prisma/client';
+import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 import { TiWorld } from 'react-icons/ti';
 

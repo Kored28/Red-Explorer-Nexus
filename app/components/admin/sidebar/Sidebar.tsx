@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminLogo from './AdminLogo'
 import SideNav from './SideNav'
-import { User } from '@/app/generated/prisma/client'
+import { User } from '@prisma/client'
 
 interface SidebarProps {
   currentUser?: User | null

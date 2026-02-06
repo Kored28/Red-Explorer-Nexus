@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { redirect, useRouter } from "next/navigation";
 
 import useUser from "@/hooks/useUser";
-import { User } from "@/app/generated/prisma/client";
+import { User } from "@prisma/client";
 import axios from "axios";
 import Input from "../inputs/Input";
 import AdminHeader from "../AdminHeader";
