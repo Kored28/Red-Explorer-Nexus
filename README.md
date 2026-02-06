@@ -8,8 +8,8 @@ A modern travel blog web application built with Next.js, TypeScript, Prisma, and
 
 ## 📸 Screenshots
 
-![Red Explorer Nexus Homepage](./public/screenshot-home.png)
-![Red Explorer Nexus Admin](./public/screenshot-admin.png)
+![Red Explorer Nexus Homepage](./public/Screenshot-home.png)
+![Red Explorer Nexus Admin](./public/Screenshot-admin.png)
 
 <!-- Alternative ways to add images: -->
 
