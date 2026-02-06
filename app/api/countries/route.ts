@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import prisma from "@/libs/prismadb";
-import { Continent } from "@/app/generated/prisma/enums";
+import { Continent } from "@prisma/client";
 
 interface PostRequestProps {
     name: string;
