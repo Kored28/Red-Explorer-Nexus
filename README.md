@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Red Explorer Nexus
 
-## Getting Started
 
-First, run the development server:
+A modern travel blog web application built with Next.js, TypeScript, Prisma, and NextAuth. Share your adventures, explore destinations, and connect with fellow travelers.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🔗 **Live Site**: [red-explorer-nexus.vercel.app](https://red-explorer-nexus.vercel.app)  
+🔐 **Admin Panel**: [red-explorer-nexus.vercel.app/admin](https://red-explorer-nexus.vercel.app/admin)
+
+**PS:** The site may take a little time to load due to image sizes. If you’re uploading images, please make sure they’re optimized and under **1MB**.
+
+## 📸 Screenshots
+
+![Red Explorer Nexus Homepage](./public/Screenshot-home.png)
+![Red Explorer Nexus Admin](./public/Screenshot-admin.png)
+
+<!-- Alternative ways to add images: -->
+
+<!-- From public folder -->
+<!-- ![App Screenshot](./public/images/screenshot.png) -->
+
+<!-- From external URL -->
+<!-- ![App Preview](https://your-image-url.com/image.png) -->
+
+<!-- Multiple screenshots in a row -->
+<!-- 
+<div align="center">
+  <img src="./public/screenshot-1.png" width="30%" />
+  <img src="./public/screenshot-2.png" width="30%" />
+  <img src="./public/screenshot-3.png" width="30%" />
+</div>
+-->
+
+<!-- Using HTML for more control -->
+<!-- 
+<p align="center">
+  <img src="./public/logo.png" alt="Logo" width="200"/>
+</p>
+-->
+
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [License](#license)
+
+## 🎯 Overview
+
+Red Explorer Nexus is a full-stack travel blogging platform that enables users to document their journeys, share experiences, and discover new destinations. Built with cutting-edge web technologies, it offers a seamless experience for travel enthusiasts to create, manage, and explore travel content.
+
+## ✨ Features
+
+- 🌍 **Travel Blog Platform** - Create and share travel stories with rich content
+- 🔐 **Authentication** - Secure user authentication powered by NextAuth
+- 👨‍💼 **Admin Panel** - Comprehensive admin dashboard at `/admin` for content management
+- 🎨 **Modern UI/UX** - Beautiful, responsive design with Tailwind CSS and Radix UI
+- 📊 **Analytics & Charts** - Visualize travel data with Recharts
+- 📝 **Form Management** - Robust form handling with React Hook Form
+- 📁 **File Uploads** - Drag-and-drop file upload with React Dropzone
+- 🗺️ **Interactive Features** - Smooth animations with Motion (Framer Motion)
+- 🔄 **Real-time Updates** - Client-side data fetching with SWR
+- 🎯 **State Management** - Efficient global state with Zustand
+- 🔔 **Notifications** - User-friendly toast notifications
+- 🗄️ **Database Integration** - Type-safe database operations with Prisma ORM
+- 🚀 **Optimized Performance** - Server-side rendering and automatic optimizations
+- 📱 **Mobile Responsive** - Fully responsive design for all devices
+- 🔒 **Type Safety** - Full TypeScript support throughout the application
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework**: Next.js 16.1.3 (with React 19.2)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4 with tw-animate-css
+- **UI Components**: 
+  - Radix UI
+  - Lucide React (icons)
+  - React Icons
+- **Forms**: React Hook Form 7.71
+- **File Uploads**: React Dropzone 14.3
+- **Charts**: Recharts 2.15
+- **Utilities**:
+  - clsx & tailwind-merge (className management)
+  - class-variance-authority (variant styles)
+
+### Backend & Data
+- **Authentication**: NextAuth 4.24 with Prisma Adapter
+- **Database ORM**: Prisma 6.19 with Prisma Client
+- **Password Hashing**: bcrypt 6.0
+- **HTTP Client**: Axios 1.13
+- **Data Fetching**: SWR 2.3
+
+### State & Notifications
+- **State Management**: Zustand 5.0
+- **Notifications**: React Hot Toast 2.6
+
+### DevOps & Tools
+- **Deployment**: Vercel
+- **Version Control**: Git/GitHub
+- **Linting**: ESLint 9 with Next.js config
+- **Compiler**: Babel React Compiler 1.0
+- **Build Tool**: PostCSS with Tailwind
+
+## 📁 Project Structure
+
+```
+Red-Explorer-Nexus/
+├── actions/              # Server actions for data mutations
+├── app/                  # Next.js App Router (pages, layouts, API routes)
+├── components/
+│   └── ui/              # Reusable UI components (Radix UI)
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions and configurations
+├── libs/                # Additional libraries and helpers
+├── prisma/              # Database schema and migrations
+│   └── schema.prisma    # Prisma schema definition
+├── public/              # Static assets (images, fonts, etc.)
+├── .gitignore
+├── components.json      # UI components configuration
+├── eslint.config.mjs    # ESLint configuration
+├── next.config.ts       # Next.js configuration
+├── package.json         # Dependencies and scripts
+├── postcss.config.mjs   # PostCSS configuration
+├── prisma.config.ts     # Prisma configuration
+├── tsconfig.json        # TypeScript configuration
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📚 Key Technologies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Authentication & Security
+- **NextAuth** with Prisma adapter for database sessions
+- **bcrypt** for secure password hashing
+- Environment-based configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### UI & Styling
+- **Tailwind CSS 4** for utility-first styling
+- **Radix UI** for accessible, unstyled components
+- **Lucide React** & **React Icons** for comprehensive iconography
 
-## Learn More
+### Data Management
+- **Prisma ORM** for type-safe database queries
+- **SWR** for efficient client-side data fetching and caching
+- **Zustand** for lightweight state management
+- **React Hook Form** for performant form handling
 
-To learn more about Next.js, take a look at the following resources:
+### Developer Experience
+- **TypeScript** for type safety
+- **ESLint** for code quality
+- **React Compiler** for optimized builds
+- **Hot reload** for rapid development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Deploy on Vercel
+## 👤 Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Kored28**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- GitHub: [@Kored28](https://github.com/Kored28)
+- Live Site: [red-explorer-nexus.vercel.app](https://red-explorer-nexus.vercel.app)
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org) and [React](https://react.dev)
+- Authentication by [NextAuth.js](https://next-auth.js.org)
+- UI components from [Radix UI](https://www.radix-ui.com)
+- Database management with [Prisma](https://www.prisma.io)
+- Animations powered by [Motion](https://motion.dev)
+- Deployed on [Vercel](https://vercel.com)
