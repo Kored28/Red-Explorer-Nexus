@@ -25,6 +25,9 @@ export const POST = async(req: Request) => {
             return NextResponse.json({message: "Missing fields"}, {status: 400})
         }
 
+        console.log("PRISMA TYPE:", typeof prisma);
+
+
         const destination = await prisma.destination.create({
             data: {
                 title,
