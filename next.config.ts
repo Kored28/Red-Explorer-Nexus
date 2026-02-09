@@ -3,7 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: false,
-  output: "standalone",
+  serverExternalPackages: ['@prisma/client'],
+  turbopack: {},
 };
 
 export default nextConfig;
