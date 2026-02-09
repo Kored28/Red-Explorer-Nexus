@@ -1,7 +1,7 @@
 import serverAuth from "@/libs/serverAuth";
 import { NextResponse } from "next/server";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 
 interface RequestBodyProps {
     name: string;

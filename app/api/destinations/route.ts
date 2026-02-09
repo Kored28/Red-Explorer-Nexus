@@ -1,7 +1,7 @@
 import serverAuth from "@/libs/serverAuth";
 import { NextResponse } from "next/server";
 
-import prisma from "@/libs/prismadb"
+import { prisma } from "@/libs/prismadb"
 
 interface PostRequestProps {
     title: string;
@@ -13,6 +13,8 @@ interface PostRequestProps {
 
 export const POST = async(req: Request) => {
     try {
+        console.log("PRISMA IMPORTED:", prisma);
+        console.log("PRISMA DESTINATION:", prisma?.destination);
         const { currentUser } = await serverAuth();
         if(!currentUser){
             return NextResponse.json({message: "Unauthorized"}, {status: 401})

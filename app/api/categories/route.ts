@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import slugify from "slugify";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 
 interface PostRequestProps {
     name: string;

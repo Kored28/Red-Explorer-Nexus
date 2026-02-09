@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { NextResponse } from "next/server";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 
 interface RegisterBodyProps {
     name: string;

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 import { Continent } from "@prisma/client";
 
 interface PostRequestProps {
