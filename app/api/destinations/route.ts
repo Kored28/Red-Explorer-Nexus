@@ -13,8 +13,6 @@ interface PostRequestProps {
 
 export const POST = async(req: Request) => {
     try {
-        console.log("PRISMA IMPORTED:", prisma);
-        console.log("PRISMA DESTINATION:", prisma?.destination);
         const { currentUser } = await serverAuth();
         if(!currentUser){
             return NextResponse.json({message: "Unauthorized"}, {status: 401})
@@ -26,9 +24,6 @@ export const POST = async(req: Request) => {
         if(!title || !content || !featuredImage || !countryId ){
             return NextResponse.json({message: "Missing fields"}, {status: 400})
         }
-
-        console.log("PRISMA TYPE:", typeof prisma);
-
 
         const destination = await prisma.destination.create({
             data: {

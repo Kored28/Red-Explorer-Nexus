@@ -85,6 +85,7 @@ const NewCountry = () => {
             label="Save"
             onClick={onSubmit}
             disabled={isLoading}
+            disabledText="Saving"
             />
         </div>
     </div>
