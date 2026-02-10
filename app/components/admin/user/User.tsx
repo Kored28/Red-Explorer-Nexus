@@ -16,9 +16,6 @@ const User = () => {
     
     const { data: fetchedUser, isLoading } = useUser(params.id);
 
-    const handleClick = () => {
-        router.push(`/admin/users/${params.id}/edit`)
-    };
 
     return (
         <div className="flex flex-col gap-10 h-full">
@@ -30,7 +27,7 @@ const User = () => {
                     label="Edit User"
                     small
                     outline
-                    onClick={handleClick}
+                    href={`/admin/users/${params.id}/edit`}
                     />
                 </div>
             </div>

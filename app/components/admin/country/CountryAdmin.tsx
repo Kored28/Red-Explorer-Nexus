@@ -19,10 +19,6 @@ const CountryAdmin = () => {
         
     const { data: fetchedCountry, isLoading } = useCountries();
 
-    const handleClick = () => {
-        router.push(`/admin/countries/new`)
-    };
-
   return (
     <div>
         <div className="flex flex-col gap-10 h-full">
@@ -34,7 +30,7 @@ const CountryAdmin = () => {
                     label="Add new country"
                     small
                     outline
-                    onClick={handleClick}
+                    href="/admin/countries/new"
                     />
                 </div>
             </div>

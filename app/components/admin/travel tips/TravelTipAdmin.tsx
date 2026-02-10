@@ -28,9 +28,6 @@ const TravelTipAdmin = () => {
     const { data: fetchedPost, isLoading } = useTravelTips();
     console.log(fetchedPost)
 
-    const handleClick = () => {
-        router.push(`/admin/travel-tips/new`)
-    };
 
    return (
          <div>
@@ -43,7 +40,7 @@ const TravelTipAdmin = () => {
                         label="Add new Travel Tips"
                         small
                         outline
-                        onClick={handleClick}
+                        href="/admin/travel-tips/new"
                         />
                     </div>
                 </div>

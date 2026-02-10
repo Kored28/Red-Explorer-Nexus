@@ -28,9 +28,6 @@ const DestinationAdmin = () => {
     const { data: fetchedPost, isLoading } = useDestinations();
     console.log(fetchedPost)
 
-    const handleClick = () => {
-        router.push(`/admin/destinations/new`)
-    };
 
   return (
         <div>
@@ -43,7 +40,7 @@ const DestinationAdmin = () => {
                         label="Add new Destination"
                         small
                         outline
-                        onClick={handleClick}
+                        href="/admin/destinations/new"
                         />
                     </div>
                 </div>

@@ -14,7 +14,7 @@ const TravelHeroSection = () => {
                     text-center leading-10 sm:leading-22.25
                 `}
                 >
-                    Destination
+                    Travel Tips 
                 </h1>
             
             </div>

@@ -154,7 +154,9 @@ const DestinationBody = () => {
                 className="grid grid-cols-1 md:grid-cols-3 max-w-360 gap-21.75 px-5 lg:px-17.75"
             >
                 {!FetchedDestinations || isLoading ? (
-                    <Spinner color="blue" className="size-14"/>
+                    <div className="col-span-3 flex flex-row justify-center">
+                        <Spinner color="blue" className="size-20" />
+                    </div>
                 ) : (
                     FetchedDestinations.map((post: Post) => (
                         <div 

@@ -53,7 +53,7 @@ const MainNav = () => {
                         className={
                            route.active ? "bg-[#0336FF] font-roboto font-semibold rounded-lg px-[40.5px] py-[6.8px] text-white" 
                            : 
-                           "text-base text-[#FFA500] font-roboto rounded-lg font-semibold hover:bg-[#0336FF] hover:px-[40.5px] hover:py-[6.8px] hover:text-white"
+                           "text-base text-[#FFA500] font-roboto rounded-lg font-semibold hover:text-[#0336FF]"
                         }
                     >
                         {route.label}
