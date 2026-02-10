@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import slugify from "slugify";
 
 import { prisma } from "@/libs/prismadb";
+import serverAuth from "@/libs/serverAuth";
 
 interface PostRequestProps {
     name: string;
@@ -9,7 +10,14 @@ interface PostRequestProps {
 
 export const POST = async(req: Request) => {
     try {
+        const { currentUser } = await serverAuth();
+        
+        if(!currentUser){
+            return NextResponse.json({message: "Unauthorized"}, {status: 401})
+        }
+
         const body: PostRequestProps = await req.json();
+        
         const { name } = body;
 
         if(!name){

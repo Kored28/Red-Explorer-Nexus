@@ -14,6 +14,10 @@ export const PATCH = async (req: Request) => {
     try {
         const { currentUser } = await serverAuth();
 
+        if(!currentUser){
+            return NextResponse.json({message: "Unauthorized"}, {status: 401})
+        }
+
         const body: RequestBodyProps = await req.json();
 
         const { name, username, bio, profileImage} = body;

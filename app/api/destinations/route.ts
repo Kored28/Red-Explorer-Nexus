@@ -14,6 +14,7 @@ interface PostRequestProps {
 export const POST = async(req: Request) => {
     try {
         const { currentUser } = await serverAuth();
+        
         if(!currentUser){
             return NextResponse.json({message: "Unauthorized"}, {status: 401})
         }
